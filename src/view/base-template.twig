@@ -36,13 +36,9 @@
   <header>
     <a class="visually-hidden" id="skiptocontent" href="{{ request.langurl }}#maincontent">Skip to main</a>
     <div class="container-fluid bg-dark d-flex my-auto py-3 px-4 text-bg-dark">
-      {% if request.vocabid == '' and request.page != 'about' and request.page != 'feedback' %}
-        <span class="fs-6 py-3 text-light">Yhteishaku sanastoista v</span>
-      {% else %}
-        <a id="skosmos-logo-top" href="{{ request.lang }}/{% if request.contentLang and request.contentLang != request.lang %}?clang={{ request.contentLang }}{% endif %}{% if request.queryParam('anylang') == 'on' %}{% if request.contentLang == request.lang %}?{% else %}&{% endif %}anylang=on{% endif %}">
-          <h2 class="visually-hidden">Skosmos</h2>
-        </a>
-      {% endif %}
+      <a id="skosmos-logo-top" href="{{ request.lang }}/{% if request.contentLang and request.contentLang != request.lang %}?clang={{ request.contentLang }}{% endif %}{% if request.queryParam('anylang') == 'on' %}{% if request.contentLang == request.lang %}?{% else %}&{% endif %}anylang=on{% endif %}">
+        <h2 class="visually-hidden">eLter</h2>
+      </a>
       <ul class="nav nav-pills ms-auto my-auto text-light gx-3 py-3" id="topbar-nav">
         <li class="nav-item">
           <a href="{{ request.lang }}/{% if request.contentLang and request.contentLang != request.lang %}?clang={{ request.contentLang }}{% endif %}{% if request.queryParam('anylang') == 'on' %}{% if request.contentLang == request.lang %}?{% else %}&{% endif %}anylang=on{% endif %}" id="navi1" class="fs-6 text-light topbar-nav-link ms-3 text-decoration-none" >
@@ -54,17 +50,19 @@
                    <i class="fa-solid fa-circle-info"></i>&nbsp;{{ "About" | trans }}
           </a>
         </li>
-        <li class="nav-item">
-          <a href="{% if request.vocabid and vocab.title%}{{ request.vocabid }}/{% endif %}{{ request.lang }}/feedback{% if request.contentLang and request.contentLang != request.lang %}?clang={{ request.contentLang }}{% endif %}{% if request.queryParam('anylang') == 'on' %}{% if request.contentLang == request.lang %}?{% else %}&{% endif %}anylang=on{% endif %}" id="navi3" class="fs-6 text-light topbar-nav-link ms-3 text-decoration-none">
-                   <i class="fa-solid fa-comment"></i>&nbsp;{{ "Feedback" | trans }}
-          </a>
-        </li>
         {% if languages|length > 1 %}
         {% for langcode, langdata in languages %}
         {% if request.lang != langcode %}
-        <li class="nav-item language">
-          <a class="fs-6 text-light ms-3 text-decoration-none" id="language-{{ langcode }}" href="{{ request.langurl(langcode) }}"> {{ langdata.name }}</a>
-        </li>
+	  {% if langcode == "de"%}
+            <li class="nav-item" id="language">
+              <a class="fs-6 text-light ms-3 text-decoration-none" id="language-{{ langcode}}" href="{{ request.langurl(langcode) }}">🇩🇪 </a>
+            </li>
+	  {% endif %}
+	  {% if langcode == "en" %}
+            <li class="nav-item" id="language">
+              <a class="fs-6 text-light ms-3 text-decoration-none" id="language-{{ langcode}}" href="{{ request.langurl(langcode) }}">🇬🇧</a>
+            </li>
+	  {% endif %}
         {% endif %}
         {% endfor %}
         {% endif %}
@@ -73,9 +71,18 @@
     {% if pageType == 'landing' or pageType == 'vocab-home' or pageType == 'concept' %}
     <div class="container-fluid bg-white py-4 px-4" id="headerbar">
       {% if pageType == 'landing' %}
-        <div id="skosmos-logo">
-          <h1 class="visually-hidden">Skosmos</h1>
-        </div>
+      <div class="alert alert-danger alert-dismissible">
+        <a href="#" class="btn-close" data-dismiss="alert" aria-label="close"></a>
+          <div class="header">
+
+        Warning
+          </div>
+          <div class="content">
+            <p>You are using a development system of the emerging eLTER Research Infrastructure (RI).Please note
+         that this
+         service is still under construction and may not yet be fully functional.</p>
+          </div>
+      </div>
       {% else %}
       <div class="row">
         <div class="col-7">
@@ -93,34 +100,34 @@
     </div>
     {% endif %}
   </header>
-  <main id="main-container" class="{{pageType}}{% if list_style %} {{ list_style }}{% endif %}">
+  <main id="main-container" class="{% if request.vocabid == '' or global_search %} frontpage{% elseif concept_uri != '' %} termpage{% elseif request.vocab != '' %} vocabpage{% if list_style %} {{ list_style }}{% endif %}{% endif %} py-5">
+    {% if pageType != 'landing' %}
+    <div class="alert alert-danger alert-dismissible">
+      <a href="#" class="btn-close" data-dismiss="alert" aria-label="close"></a>
+      <div class="header">
+        
+        Warning
+      </div>
+      <div class="content">
+      <p>You are using a development system of the emerging eLTER Research Infrastructure (RI).Please note
+         that this
+         service is still under construction and may not yet be fully functional.</p>
+      </div>
+    </div>
+    {% endif %}
     <div class="container">
       <noscript>
         <strong>We're sorry but Skosmos doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
       </noscript>
-      <div id="main-container-row" class="row" tabindex="-1">
+      <div class="row" tabindex="-1">
       {% block content %}
       {% endblock %}
       </div>
     </div>
   </main>
-  <footer class="bg-white pb-5 mt-5">
-    <div class="container py-5">
-      <div class="row">
-        <div class="col-md-7 pe-5">
-          <p class="fs-5">
-                    Skosmos is a web-based tool providing services for accessing controlled vocabularies,
-                    which are used by indexers describing documents and searchers looking
-                    for suitable keywords. Vocabularies are accessed via SPARQL endpoints containing SKOS vocabularies.
-          </p>
-        </div>
-        <div class="col-md-5 px-3">
-          <span class="fs-5 fw-bold">{{ "Contact us!" | trans }}</span>
-          <p class="fs-5">Yhteystiedot?<p>
-        </div>
-      </div>
-    </div>
-  </footer>
   {% include "scripts.inc.twig" %}
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

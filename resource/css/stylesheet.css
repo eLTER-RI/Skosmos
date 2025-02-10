@@ -1,0 +1,192 @@
+    :root {
+      --elterOrange1: #f7c545;
+      --elterOrange2: #f19934;
+      --elterBlue1: #badffd;
+      --elterBlue2: #0b2032;
+      --elterBlue3: #0877bd;
+      --elterBlue4: #095a98;
+      --elterBackground: #03263d;
+      --skosmos-logo: url("https://dataspace.elter-ri.eu/marketplace/app-logo.png");
+      --smalllogo: url("https://dataspace.elter-ri.eu/marketplace/app-logo.png");
+      --dark-color: var(--elterBlue2);
+      --secondary-dark-color: var(--elterBlue4);
+      --light-color: #f0f0f5;
+      --link-hover-color: var(--elterOrange2);
+      --main-bg-color: var(--elterBackground);
+    }
+    html,
+    body {
+      min-height: 100vh;
+    }
+    .topbar-white {
+      background-color: var(--main-bg-color);
+    }
+    div#navigation a,
+    span.navigation-font {
+      color: white;
+    }
+    div#navigation a:hover,
+    span.navigation-font:hover {
+      color: var(--link-hover-color);
+    }
+    .logo-header,
+    #navi3 {
+      display: none;
+    }
+    #vocabulary-list {
+      padding: 0;
+      justify-self: center;
+    }
+    .vocab-category {
+      padding: 2em 1em 1em 1em;
+    }
+    .vocabularies ul li,
+    .vocabularies h3 {
+      margin-bottom: 1.6em;
+    }
+    .vocabularies ul li:last-of-type {
+      margin-bottom: 0;
+    }
+    .vocabularies ul li a {
+      display: block;
+      font-size: 1.1em;
+    }
+    #navi1,
+    #navi2,
+    #navi3,
+    #navi4 {
+      padding-left: 26px;
+      padding-top: 6px;
+      background-position: left center;
+      background-repeat: no-repeat;
+    }
+    .frontpage-spacing .header-float {
+      margin-bottom: 40px;
+    }
+    .header-float #lang-dropdown-toggle,
+    .header-float .btn {
+      color: var(--main-bg-color);
+    }
+    .header-float .search-vocab-text {
+      background-color: var(--dark-color);
+    }
+    .header-float .search-vocab-text p {
+      color: var(--main-bg-color);
+    }
+    .header-float #lang-dropdown-toggle:focus {
+      color: white;
+    }
+    .frontpage-logo .main-container.frontpage::before {
+      visibility: hidden;
+    }
+    div#topbar-service-helper {
+      margin-top: 10px;
+    }
+    #service-name {
+      display: block;
+      color: white;
+    }
+    #topbar-service-helper::before {
+      content: "";
+      background-image: var(--smalllogo);
+      background-repeat: no-repeat;
+      background-size: contain;
+      width: 50px;
+      height: 50px;
+    }
+    #vocab-info #counts {
+      display:none;
+    }
+    .concept-main .row.property {
+      padding:.5em 0;
+      margin:0.5em 0;
+    }
+    .concept-main .row.property {
+      border-bottom:1px solid #ddd;
+    }
+    .concept-main .row.property.prop-preflabel {
+      border-bottom-color:transparent;
+    }
+    .concept-main .row.property .property-value-column {
+      border:none;
+    }
+    .concept-main .concept-download-links {
+      display:block;
+    }
+    .concept-main .versal.date-info {
+      display:block;
+      margin-top:1.6em;
+    }
+    .prop-skos_exactMatch .property-value-column * {
+      width:100%;
+    }
+    .prop-skos_exactMatch .property-value-column .versal {
+      display:block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .about-logo:before {
+      content: " ";
+      position: absolute;
+      visibility: hidden;
+      width: 300px;
+      height: 140px;
+      background-image: var(--elterlogo);
+      background-repeat: no-repeat;
+      background-size: contain;
+      top: 50px;
+      left: -0;
+    }
+    .about-content {
+      margin-top: 1.6em;
+    }
+    .about-content p {
+      line-height: 1.7em;
+      margin-bottom: 1.7em;
+    }
+    .about-content p:last-of-type {
+      margin-bottom: 0;
+    }
+    .about-extra-info {
+      display: none;
+    }
+    .hostedBy {
+      border-top: 2px solid lightgray;
+      margin-top: 1.6em;
+      padding-top: 1.6em;
+      text-align: center;
+    }
+
+    /* MEDIA QUERIES*/
+    @media (min-width: 801px) {
+      .about-logo:before {
+        visibility: visible;
+      }
+    }
+
+    @media (min-width: 1260px) {
+      .about-logo:before {
+        visibility: visible;
+        width: 350px;
+      }
+    }
+    @media (min-width: 980px) {
+      .frontpage-logo .main-container.frontpage::before {
+        content: " ";
+        position: absolute;
+        visibility: visible;
+        width: 350px;
+        height: 140px;
+        background-image: var(--elterlogo);
+        background-repeat: no-repeat;
+        background-size: contain;
+        top: -160px;
+      }
+      .frontpage-logo #service-name {
+        display: none;
+      }
+      .frontpage-logo #topbar-service-helper::before {
+        background-image: none;
+      }
+    }
