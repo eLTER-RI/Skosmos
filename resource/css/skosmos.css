@@ -37,8 +37,8 @@
 
   /* Font definitions */
   --font-size: 14px;
-  --font-family: 'Public Sans', sans-serif;
-  --font-family-heading: 'EB Garamond', serif;
+  --font-family: 'Helvetica Neue', sans-serif;
+  --font-family-heading: 'Helvetica Neue', sans-serif;
 }
 
 body {
@@ -370,6 +370,7 @@ body {
    *****************************************/
   .container {
     max-width: 1460px !important;
+    padding: 5rem;
   }
 
   #main-container {

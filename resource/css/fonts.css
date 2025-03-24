@@ -30,3 +30,27 @@
   src: local(''),
     url('../fonts/ttf/EBGaramond-Bold.ttf') format('truetype');
 }
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 400;
+  src: local(''),
+    url('../fonts/woff/HelveticaNeue-Roman.woff2') format('woff');
+}
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  font-style: bold;
+  font-weight: 700;
+  src: local(''),
+    url('../fonts/woff/HelveticaNeue-Bold.woff2') format('woff');
+}
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  font-style: italic;
+  font-weight: 400;
+  src: local(''),
+    url('../fonts/woff/HelveticaNeue-Italic.woff2') format('woff');
+}
