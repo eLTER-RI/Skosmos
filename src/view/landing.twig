@@ -1,33 +1,39 @@
 {% set pageType = 'landing' %}
 {% extends "base-template.twig" %}
-{% block title %}{{ GlobalConfig.serviceNameLong(request.lang) }}{% endblock %}
-{% block description %}{{ GlobalConfig.serviceDescription(request.lang) }}{% endblock %}
-{% block url %}{{ BaseHref }}{{ request.langurl }}{% endblock %}
+{% block title %}
+  {{ GlobalConfig.serviceNameLong(request.lang) }}
+{% endblock %}
+{% block description %}
+  {{ GlobalConfig.serviceDescription(request.lang) }}
+{% endblock %}
+{% block url %}
+  {{ BaseHref }}{{ request.langurl }}
+{% endblock %}
 
 {% block content %}
   <div class="tw-p-4" id="vocabulary-list">
     {% if request.vocabList|length == 0 %}
-    <h2 class="fs-2 fw-bold">{{ "No vocabularies on the server!" | trans }}</h2>
+      <h2 class="fs-2 fw-bold">{{ "No vocabularies on the server!" | trans }}</h2>
     {% else %}
       {% if category_label %}
-      <h2 class="py-3 fs-2 fw-bold">{{ category_label }}</h2>
+        <h2 class="py-3 fs-2 fw-bold">{{ category_label }}</h2>
       {% else %}
-      <h2 class="py-3 fs-2 fw-bold">{{ "eLTER Vocabularies and Ontologies" | trans }}</h2>
+        <h2 class="py-3 fs-2 fw-bold">{{ "eLTER Vocabularies and Ontologies" | trans }}</h2>
       {% endif %}
       {% for vocabClassName,vocabArray in request.vocabList %}
-      <div class="pb-4">
-        <h3 class="py-2 tw-text-3xl tw-font-semibold">{{ vocabClassName }}</h3>
-        <ul class="list-none tw-flex tw-flex-col tw-gap-4 tw-w-max tw-min-w-72">
-        {% for vocab in vocabArray %}
-          <li class="">
-            <a class="tw-flex tw-flex-col tw-gap-1 tw-bg-base-100 tw-shadow-md tw-p-5 hover:tw-bg-slate-200 tw-transition-all tw-duration-300 tw-ease-in-out" href="{{ vocab.id }}/{{ request.lang }}/{% if request.contentLang != request.lang and request.contentLang != '' and request.contentLang in vocab.config.languages %}?clang={{ request.contentLang }}{% endif %}">
-              <h3 class="tw-text-xl tw-text-[var(--elterBlue4)] tw-font-bold">{{ vocab.title }}</h3>
-              <p>{{ vocab.subtitle }}</p>
-            </a>
-          </li>
-        {% endfor %}
-        </ul>
-      </div>
+        <div class="pb-4">
+          <h3 class="py-2 tw-text-3xl tw-font-semibold">{{ vocabClassName }}</h3>
+          <ul class="list-none tw-flex tw-flex-col tw-gap-4 tw-w-max tw-min-w-72">
+            {% for vocab in vocabArray %}
+              <li class="">
+                <a class="tw-flex tw-flex-col tw-gap-1 tw-bg-base-100 tw-shadow-md tw-p-5 hover:tw-bg-slate-200 tw-transition-all tw-duration-300 tw-ease-in-out" href="{{ vocab.id }}/{{ request.lang }}/{% if request.contentLang != request.lang and request.contentLang != '' and request.contentLang in vocab.config.languages %}?clang={{ request.contentLang }}{% endif %}">
+                  <h3 class="tw-text-xl tw-text-[var(--elterBlue4)] tw-font-bold">{{ vocab.title }}</h3>
+                  <p>{{ vocab.subtitle }}</p>
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
       {% endfor %}
     {% endif %}
   </div>

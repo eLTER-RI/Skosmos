@@ -1,18 +1,18 @@
 {# This is the template for the about page. You can enter any html here and show different language versions by using the lang value in a twig conditional as demonstrated below. #}
 {% block content %}
-<div id="about-content">
-  {% if request.lang == 'en' %}
-    <h4>About</h4>
-    <p>LTER-Europe was launched in 2003 as the umbrella network for Long-Term Ecosystem Research (LTER) in Europe. The network aims at identifying drivers of ecosystem change across European environmental and economic gradients, and exploring relations between these drivers, responses and developmental challenges under the framework of a common research agenda. LTER-Europe was heavily involved in developing the concept of Long-Term Socio-Ecological Research (LTSER).</p>
-    <p>Currently within LTER Europe, the eLTER Research Infrastructure (eLTER RI) is being developed in the framework of ESFRI (European Strategy Forum on Research Infrastructures) focussing, among many matters, on harmonised parameters and methods.</p>
+  <div id="about-content">
+    {% if request.lang == 'en' %}
+      <h4>About</h4>
+      <p>LTER-Europe was launched in 2003 as the umbrella network for Long-Term Ecosystem Research (LTER) in Europe. The network aims at identifying drivers of ecosystem change across European environmental and economic gradients, and exploring relations between these drivers, responses and developmental challenges under the framework of a common research agenda. LTER-Europe was heavily involved in developing the concept of Long-Term Socio-Ecological Research (LTSER).</p>
+      <p>Currently within LTER Europe, the eLTER Research Infrastructure (eLTER RI) is being developed in the framework of ESFRI (European Strategy Forum on Research Infrastructures) focussing, among many matters, on harmonised parameters and methods.</p>
 
-    <a href="http://github.com/NatLibFi/Skosmos">Skosmos GitHub repository</a>
-  {% elseif request.lang == 'de' %}
-    <h4>About</h4>
-    <p>LTER-Europe was launched in 2003 as the umbrella network for Long-Term Ecosystem Research (LTER) in Europe. The network aims at identifying drivers of ecosystem change ac>
-    <p>Currently within LTER Europe, the eLTER Research Infrastructure (eLTER RI) is being developed in the framework of ESFRI (European Strategy Forum on Research Infrastructur>
+      <a href="http://github.com/NatLibFi/Skosmos">Skosmos GitHub repository</a>
+    {% elseif request.lang == 'de' %}
+      <h4>About</h4>
+      <p>LTER-Europe was launched in 2003 as the umbrella network for Long-Term Ecosystem Research (LTER) in Europe. The network aims at identifying drivers of ecosystem change ac></p>
+      <p>Currently within LTER Europe, the eLTER Research Infrastructure (eLTER RI) is being developed in the framework of ESFRI (European Strategy Forum on Research Infrastructur>
 
-    <a href="http://github.com/NatLibFi/Skosmos">Skosmos GitHub repository</a>
-  {% endif %}
-</div>
-{% endblock %}
+        <a href="http://github.com/NatLibFi/Skosmos">Skosmos GitHub repository</a>
+      {% endif %}
+    </div>
+  {% endblock %}
