@@ -22,7 +22,7 @@
             {# Hierarchy tab is disabled on vocab page if showTopConcepts is set to false #}
             {% set disabled_class = request.page == 'vocab' and view == 'hierarchy' and not (vocab.config.showTopConcepts) %}
             <li id="{{ view }}" class="">
-              <a class="hover:tw-bg-elter-blue-100 tw-font-bold tw-text-lg tw-px-3 tw-py-2 {% if active_class %}tw-bg-elter-blue-400 tw-text-base-100{% elseif disabled_class %} disabled {% else %} tw-text-elter-blue-400{% endif %}" {% if disabled_class %} data-title="{{ 'hierarchy-disabled-help' | trans }}" {% endif %} role="tab" data-bs-toggle="tab" href="#tab-{{ view }}" aria-controls="tab-{{ view }}">
+              <a class="hover:tw-bg-elter-blue-100 tw-font-bold tw-text-lg tw-px-3 tw-py-2 {% if active_class %}tw-bg-elter-blue-400 tw-text-base-100{% elseif disabled_class %} disabled {% else %} tw-text-elter-blue-400{% endif %}" {% if disabled_class %} data-title="{{ 'hierarchy-disabled-help' | trans }}" {% endif %} role="tab" data-bs-toggle="tab" href="#tab-{{ view }}" aria-controls="tab-{{ view }}" value>
                 {{ view_trans_text | trans }}
               </a>
             </li>
@@ -33,7 +33,7 @@
       <div class="tab-content tw-overflow-hidden">
         {% for view in vocab.config.sidebarViews %}
           {# active_class is used to set initial active tab #}
-          {# On vocab page active tab is set to defaultSidebarView, on concept page active tab is set to defaultConceptSidebarView #}{% set active_class = (request.page == 'vocab' and view == vocab.config.defaultSidebarView) or (request.page == 'page' and view == vocab.config.defaultConceptSidebarView) %}<div class="tab-pane{% if active_class %} active{% endif %} [&_.pagination]:tw-flex [&_.pagination]:tw-flex-wrap [&_.pagination>li]:tw-w-10 [&_.sidebar-list]:tw-bg-base-100 [&_.sidebar-list]:tw-mt-2 tw-h-max" id="tab-{{ view }}" role="tabpanel"> </div>
+          {# On vocab page active tab is set to defaultSidebarView, on concept page active tab is set to defaultConceptSidebarView #}{% set active_class = (request.page == 'vocab' and view == vocab.config.defaultSidebarView) or (request.page == 'page' and view == vocab.config.defaultConceptSidebarView) %}<div class="tab-pane{% if active_class %} active{% endif %} [&_.pagination]:tw-flex [&_.pagination]:tw-flex-wrap [&_.pagination]:tw-bg-elter-blue-400 [&_.pagination>li]:tw-w-10 [&_.pagination>li>a]:tw-bg-elter-blue-400 [&_.pagination>li>a]:!tw-m-0 [&_.pagination>li>a]:!tw-border-0 [&_.pagination>li>a]:!tw-rounded-none [&_.pagination>li>a]:!tw-text-base-100  [&_.pagination>li>a]:tw-text-center [&_.pagination>li>a:hover]:!tw-text-elter-blue-200 [&_.sidebar-list]:tw-bg-base-100 [&_.sidebar-list]:tw-mt-2 tw-h-max" id="tab-{{ view }}" role="tabpanel"> </div>
         {% endfor %}
       </div>
 
