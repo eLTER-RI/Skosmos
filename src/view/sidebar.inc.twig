@@ -3,7 +3,7 @@
     {% block sidebar %}
       <div class="sidebar-buttons">
         <h2 class="visually-hidden">{{'Sidebar listing: list and traverse vocabulary contents by a criterion' | trans}}</h2>
-        <ul class="tw-list-none tw-flex tw-w-full" id="sidebar-tabs" role="tablist">
+        <ul class="tw-list-none tw-flex tw-flex-wrap" id="sidebar-tabs" role="tablist">
           {% for view in vocab.config.sidebarViews %}
             {% if view == 'alphabetical' %}
               {% set view_trans_text = 'Alpha-nav' %}
@@ -21,8 +21,8 @@
 
             {# Hierarchy tab is disabled on vocab page if showTopConcepts is set to false #}
             {% set disabled_class = request.page == 'vocab' and view == 'hierarchy' and not (vocab.config.showTopConcepts) %}
-            <li id="{{ view }}" class="">
-              <a class="hover:tw-bg-elter-blue-100 tw-font-bold tw-text-lg tw-px-3 tw-py-2 {% if active_class %}tw-bg-elter-blue-400 tw-text-base-100{% elseif disabled_class %} disabled {% else %} tw-text-elter-blue-400{% endif %}" {% if disabled_class %} data-title="{{ 'hierarchy-disabled-help' | trans }}" {% endif %} role="tab" data-bs-toggle="tab" href="#tab-{{ view }}" aria-controls="tab-{{ view }}" value>
+            <li id="{{ view }}">
+              <a class="hover:tw-bg-elter-blue-100 tw-font-bold tw-text-lg tw-px-3 tw-py-2 {% if disabled_class %} disabled {% endif %}" {% if disabled_class %} data-title="{{ 'hierarchy-disabled-help' | trans }}" {% endif %} role="tab" data-bs-toggle="tab" href="#tab-{{ view }}" aria-controls="tab-{{ view }}" value>
                 {{ view_trans_text | trans }}
               </a>
             </li>
@@ -40,3 +40,25 @@
     {% endblock %}
   </div>
 </div>
+
+ <script>
+    const tabs = Array.from(document.getElementById("sidebar-tabs").querySelectorAll("li")).map(tab => tab.children[0])
+
+    const activeClassName = "!tw-bg-elter-blue-400 !tw-text-base-100"
+
+    let currTab = tabs.at(0)
+    currTab.className = `${currTab.className} ${activeClassName}`
+
+    tabs.forEach(tab => {
+      tab.addEventListener("click", () => {
+          if (currTab) {
+            currTab.className = tab.className.replace(activeClassName, "");
+          }
+  
+          tab.className = `${tab.className} ${activeClassName}`;
+          
+          currTab = tab;
+  
+      })
+    })
+</script>
