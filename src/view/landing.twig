@@ -25,10 +25,13 @@
           <h3 class="py-2 tw-text-3xl tw-font-semibold">{{ vocabClassName }}</h3>
           <ul class="list-none tw-flex tw-flex-col tw-gap-4 tw-w-max tw-min-w-72">
             {% for vocab in vocabArray %}
+              {% set titleAndSubheading = vocab.title|split(' – ') %}
               <li class="">
-                <a class="tw-flex tw-flex-col tw-gap-1 tw-bg-base-100 tw-shadow-md tw-p-5 hover:tw-bg-slate-200 tw-transition-all tw-duration-300 tw-ease-in-out" href="{{ vocab.id }}/{{ request.lang }}/{% if request.contentLang != request.lang and request.contentLang != '' and request.contentLang in vocab.config.languages %}?clang={{ request.contentLang }}{% endif %}">
-                  <h3 class="tw-text-xl tw-text-[var(--elterBlue4)] tw-font-bold">{{ vocab.title }}</h3>
-                  <p>{{ vocab.subtitle }}</p>
+                <a class="tw-flex tw-flex-col tw-gap-1 tw-bg-base-100 tw-shadow-md tw-p-5 hover:tw-bg-elter-blue-100 tw-transition-all tw-duration-300 tw-ease-in-out" href="{{ vocab.id }}/{{ request.lang }}/{% if request.contentLang != request.lang and request.contentLang != '' and request.contentLang in vocab.config.languages %}?clang={{ request.contentLang }}{% endif %}">
+                  <h3 class="tw-text-xl tw-font-bold">{{ titleAndSubheading[0] }}</h3>
+                  <p>
+                    {{ titleAndSubheading[1] }}
+                  </p>
                 </a>
               </li>
             {% endfor %}
