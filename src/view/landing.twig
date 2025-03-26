@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block content %}
-  <div class="tw-p-4" id="vocabulary-list">
+  <div class="tw-p-4 tw-absolute tw-left-12 tw-w-[calc(100%-3rem)]" id="vocabulary-list">
     {% if request.vocabList|length == 0 %}
       <h2 class="fs-2 fw-bold">{{ "No vocabularies on the server!" | trans }}</h2>
     {% else %}
