@@ -33,26 +33,26 @@
     <link href="resource/fontawesome/css/regular.css" rel="stylesheet">
      <script src="https://cdn.tailwindcss.com"></script>
      <script>
-              tailwind.config = {
-                prefix: 'tw-',
-                theme: {
-                  colors: {
-                    'base-100': '#fefefe',
-                    'base-200': '#F4F3F2',
-                    'black': '#000000',
-                    'elter-blue-100': '#badffd',
-                    'elter-blue-200': '#0877bd',
-                    'elter-blue-300': '#095a98',
-                    'elter-blue-400': '#003266',
-                    'elter-blue-500': '#0b2032',
-                    'elter-orange-100': '#f7c545',
-                    'elter-orange-200': '#f19934',
-                    'elter-background': '#03263d',
-                    'warning': '#ffbe00'
-                  }
-                }
-              }
-        </script>
+                                          tailwind.config = {
+                                            prefix: 'tw-',
+                                            theme: {
+                                              colors: {
+                                                'base-100': '#fefefe',
+                                                'base-200': '#F4F3F2',
+                                                'black': '#000000',
+                                                'elter-blue-100': '#badffd',
+                                                'elter-blue-200': '#0877bd',
+                                                'elter-blue-300': '#095a98',
+                                                'elter-blue-400': '#003266',
+                                                'elter-blue-500': '#0b2032',
+                                                'elter-orange-100': '#f7c545',
+                                                'elter-orange-200': '#f19934',
+                                                'elter-background': '#03263d',
+                                                'warning': '#ffbe00'
+                                              }
+                                            }
+                                          }
+                                    </script>
       {% if GlobalConfig.customCss %}
     <link href="{{ GlobalConfig.customCss }}" media="screen, print" rel="stylesheet" type="text/css"> {% endif %}
     {% for plugin, files in request.plugins.pluginsCSS %}
@@ -67,7 +67,7 @@
         <a id="skosmos-logo-top" href="{{ request.lang }}/{% if request.contentLang and request.contentLang != request.lang %}?clang={{ request.contentLang }}{% endif %}{% if request.queryParam('anylang') == 'on' %}{% if request.contentLang == request.lang %}?{% else %}&{% endif %}anylang=on{% endif %}">
           <h2 class="visually-hidden">eLter</h2>
         </a>
-        <ul class="py-3 my-auto nav nav-pills ms-auto text-light gx-3" id="topbar-nav">
+        <ul class="py-3 my-auto nav nav-pills ms-auto text-light gx-3 [&>li>a:hover]:!tw-text-elter-blue-200" id="topbar-nav">
           <li class="nav-item">
             <a href="{{ request.lang }}/{% if request.contentLang and request.contentLang != request.lang %}?clang={{ request.contentLang }}{% endif %}{% if request.queryParam('anylang') == 'on' %}{% if request.contentLang == request.lang %}?{% else %}&{% endif %}anylang=on{% endif %}" id="navi1" class="fs-6 text-light topbar-nav-link ms-3 text-decoration-none">
               <i class="fa-solid fa-house"></i>&nbsp;{{ "Vocabularies" | trans }}
@@ -89,7 +89,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewbox="0 -960 960 960" width="40px" fill="#000000"><path d="M440-280h80v-240h-80v240Zm40-320q17 0 28.5-11.5T520-640q0-17-11.5-28.5T480-680q-17 0-28.5 11.5T440-640q0 17 11.5 28.5T480-600Zm0 520q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
 
               <div class="content tw-text-lg">
-                <p>You are using a development system of the emerging eLTER Research Infrastructure (RI).Please note that this service is still
+                <p>You are using a development system of the emerging eLTER Research Infrastructure (RI). Please note that this service is still
                   <b>under construction</b>
                   and may not yet be fully functional.</p>
               </div>
@@ -123,7 +123,7 @@
           <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewbox="0 -960 960 960" width="40px" fill="#000000"><path d="M440-280h80v-240h-80v240Zm40-320q17 0 28.5-11.5T520-640q0-17-11.5-28.5T480-680q-17 0-28.5 11.5T440-640q0 17 11.5 28.5T480-600Zm0 520q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/></svg>
 
           <div class="content tw-text-lg">
-            <p>You are using a development system of the emerging eLTER Research Infrastructure (RI).Please note that this service is still
+            <p>You are using a development system of the emerging eLTER Research Infrastructure (RI). Please note that this service is still
               <b>under construction</b>
               and may not yet be fully functional.</p>
           </div>
