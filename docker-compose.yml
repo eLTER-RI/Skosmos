@@ -44,3 +44,8 @@ services:
       - type: bind
         source: ./dockerfiles/config/config-docker-compose.ttl
         target: /var/www/html/config.ttl
+    develop:
+      watch:
+        - action: sync
+          path: ./src/
+          target: /var/www/html/src/

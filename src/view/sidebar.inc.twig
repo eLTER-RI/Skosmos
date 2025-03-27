@@ -1,40 +1,69 @@
 <div class="col-md-4 position-relative" id="sidebar-col">
   <div id="sidebar">
-  {% block sidebar %}
-    <div class="sidebar-buttons">
-      <h2 class="visually-hidden">{{'Sidebar listing: list and traverse vocabulary contents by a criterion' | trans}}</h2>
-      <ul class="nav nav-tabs-no-style nav-justified" id="sidebar-tabs" role="tablist">
+    {% block sidebar %}
+      <div class="sidebar-buttons">
+        <h2 class="visually-hidden">{{'Sidebar listing: list and traverse vocabulary contents by a criterion' | trans}}</h2>
+        <ul class="tw-list-none tw-flex tw-flex-wrap" id="sidebar-tabs" role="tablist">
+          {% for view in vocab.config.sidebarViews %}
+            {% if view == 'alphabetical' %}
+              {% set view_trans_text = 'Alpha-nav' %}
+            {% elseif view == 'hierarchy' %}
+              {% set view_trans_text = 'Hier-nav' %}
+            {% elseif view == 'groups' %}
+              {% set view_trans_text = 'Group-nav' %}
+            {% else %}
+              {% set view_trans_text = vocab.config.showDeprecatedChanges ? 'Changes-and-deprecations-nav' : 'Changes-nav' %}
+            {% endif %}
+            {# active_class is used to set initial active tab and disabled_class is used to disable hierarchy tab #}
+            {# On vocab page active tab is set to defaultSidebarView, on concept page active tab is set to defaultConceptSidebarView #}
+            {% set active_class = (request.page == 'vocab' and view == vocab.config.defaultSidebarView) or (request.page == 'page' and view == vocab.config.defaultConceptSidebarView) %}
+            <div class="{{ request.page }}"></div>
+
+            {# Hierarchy tab is disabled on vocab page if showTopConcepts is set to false #}
+            {% set disabled_class = request.page == 'vocab' and view == 'hierarchy' and not (vocab.config.showTopConcepts) %}
+            <li id="{{ view }}">
+              <a class="hover:tw-bg-elter-blue-100 tw-font-bold tw-text-lg tw-px-3 tw-py-2 {% if active_class %} active{% elseif disabled_class %} disabled {% endif %}" {% if disabled_class %} data-title="{{ 'hierarchy-disabled-help' | trans }}" {% endif %} role="tab" data-bs-toggle="tab" href="#tab-{{ view }}" aria-controls="tab-{{ view }}">
+                {{ view_trans_text | trans }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="tab-content tw-overflow-hidden">
         {% for view in vocab.config.sidebarViews %}
-          {% if view == 'alphabetical' %} {% set view_trans_text = 'Alpha-nav' %}
-          {% elseif view == 'hierarchy' %} {% set view_trans_text = 'Hier-nav' %}
-          {% elseif view == 'groups' %} {% set view_trans_text = 'Group-nav' %}
-          {% else %} {% set view_trans_text = vocab.config.showDeprecatedChanges ? 'Changes-and-deprecations-nav' : 'Changes-nav' %}{% endif %}
-          {# active_class is used to set initial active tab and disabled_class is used to disable hierarchy tab #}
-          {# On vocab page active tab is set to defaultSidebarView, on concept page active tab is set to defaultConceptSidebarView #}
-          {% set active_class = (request.page == 'vocab' and view == vocab.config.defaultSidebarView) or (request.page == 'page' and view == vocab.config.defaultConceptSidebarView) %}
-          {# Hierarchy tab is disabled on vocab page if showTopConcepts is set to false #}
-          {% set disabled_class = request.page == 'vocab' and view == 'hierarchy' and not (vocab.config.showTopConcepts) %}
-          <li id="{{ view }}" class="nav-item">
-            <a class="nav-link{% if active_class %} active{% elseif disabled_class %} disabled{% endif %}"
-              {% if disabled_class %}data-title="{{ 'hierarchy-disabled-help' | trans }}"{% endif %} 
-              role="tab" data-bs-toggle="tab" href="#tab-{{ view }}" aria-controls="tab-{{ view }}">
-              {{ view_trans_text | trans }}
-            </a>
-          </li>
+          {# active_class is used to set initial active tab #}
+          {# On vocab page active tab is set to defaultSidebarView, on concept page active tab is set to defaultConceptSidebarView #}{% set active_class = (request.page == 'vocab' and view == vocab.config.defaultSidebarView) or (request.page == 'page' and view == vocab.config.defaultConceptSidebarView) %}<div class="tab-pane{% if active_class %} active{% endif %} [&_.pagination]:tw-flex [&_.pagination]:tw-flex-wrap [&_.pagination]:tw-bg-elter-blue-400 [&_.pagination>li]:tw-w-10 [&_.pagination>li>a]:tw-bg-elter-blue-400 [&_.pagination>li>a]:!tw-m-0 [&_.pagination>li>a]:!tw-border-0 [&_.pagination>li>a]:!tw-rounded-none [&_.pagination>li>a]:!tw-text-base-100  [&_.pagination>li>a]:tw-text-center [&_.pagination>li>a:hover]:!tw-text-elter-blue-200 [&_.sidebar-list]:tw-bg-base-100 [&_.sidebar-list]:tw-border-t-4 [&_.sidebar-list]:tw-border-elter-blue-400 tw-h-max" id="tab-{{ view }}" role="tabpanel"> </div>
         {% endfor %}
-      </ul>
+      </div>
 
-    </div>
-
-    <div class="tab-content">
-      {% for view in vocab.config.sidebarViews %}
-        {# active_class is used to set initial active tab #}
-        {# On vocab page active tab is set to defaultSidebarView, on concept page active tab is set to defaultConceptSidebarView #}
-        {% set active_class = (request.page == 'vocab' and view == vocab.config.defaultSidebarView) or (request.page == 'page' and view == vocab.config.defaultConceptSidebarView) %}
-        <div class="tab-pane{% if active_class %} active{% endif %}" id="tab-{{ view }}" role="tabpanel"></div>
-      {% endfor %}
-    </div>
-
-  {% endblock %}
+    {% endblock %}
   </div>
 </div>
+
+{# Whoever comes to this to change, I'm sincerely sorry #}
+ <script>
+    const tabs = Array.from(document.getElementById("sidebar-tabs").querySelectorAll("li")).map(tab => tab.children[0])
+
+    const activeClassName = "!tw-bg-elter-blue-400 !tw-text-base-100"
+
+    const callback = (mutationList, observer) => {
+      for (const mutation of mutationList) {
+        if (mutation.attributeName == "aria-selected") {
+          if (mutation.target.getAttribute("aria-selected") == "true") {
+            mutation.target.className = `${mutation.target.className} ${activeClassName}`
+          } else {
+            mutation.target.className = mutation.target.className.replace(activeClassName, "")
+          }
+          
+        }
+      }
+    }
+
+    const mutationConfig = { attributes: true };
+
+    tabs.forEach(tab => {
+      const observer = new MutationObserver(callback);
+      observer.observe(tab, mutationConfig);
+    })
+</script>

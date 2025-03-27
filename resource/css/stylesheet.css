@@ -13,6 +13,7 @@
       --light-color: #f0f0f5;
       --link-hover-color: var(--elterOrange2);
       --main-bg-color: var(--elterBackground);
+      --bs-heading-color: #003266;
     }
     html,
     body {

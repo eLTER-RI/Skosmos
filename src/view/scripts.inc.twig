@@ -1,6 +1,6 @@
 <!-- Skosmos variables passed from the backend to the frontend code-->
 <!-- NB: Do not add comments inside the JS object as it would break JSON parsing -->
-<script id="skosmos-global-vars">
+ <script id="skosmos-global-vars">
 {% set mockup_translations = {
     "fi": {
         "fi": "suomi",
@@ -62,7 +62,7 @@ window.SKOSMOS = {
 </script>
 
 <!-- Search result data -->
-<script type="application/ld+json">
+ <script type="application/ld+json">
   {%- if concept -%}
     {{ concept.dumpJsonLd|raw }}
   {%- else -%}
@@ -71,32 +71,33 @@ window.SKOSMOS = {
 </script>
 
 <!-- Plugin JS sources -->
-{% for files in request.plugins.pluginsJS %}
-  {% for file in files %}<script src="{{ file }}"></script>{% endfor %}
+  {% for files in request.plugins.pluginsJS %}{% for file in files %}
+     <script src="{{ file }}"></script>
+  {% endfor %}
 {% endfor %}
 
 <!-- Bootstrap -->
-<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+ <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
 
 <!-- Vue.js -->
-<script src="node_modules/vue/dist/vue.global.js"></script>
+ <script src="node_modules/vue/dist/vue.global.js"></script>
 
 <!-- Helper methods shared by Vue.js components -->
-<script src="resource/js/partial-page-load.js"></script>
-<script src="resource/js/get-concept-url.js"></script>
-<script src="resource/js/translation-service.js"></script>
+ <script src="resource/js/partial-page-load.js"></script>
+ <script src="resource/js/get-concept-url.js"></script>
+ <script src="resource/js/translation-service.js"></script>
 
 <!-- Vue.js components -->
-<script src="resource/js/vocab-counts.js"></script>
-<script src="resource/js/term-counts.js"></script>
-<script src="resource/js/concept-mappings.js"></script>
-<script src="resource/js/tab-alpha.js"></script>
-<script src="resource/js/tab-hierarchy.js"></script>
-<script src="resource/js/tab-groups.js"></script>
-<script src="resource/js/tab-changes.js"></script>
-<script src="resource/js/vocab-search.js"></script>
+ <script src="resource/js/vocab-counts.js"></script>
+ <script src="resource/js/term-counts.js"></script>
+ <script src="resource/js/concept-mappings.js"></script>
+ <script src="resource/js/tab-alpha.js"></script>
+ <script src="resource/js/tab-hierarchy.js"></script>
+ <script src="resource/js/tab-groups.js"></script>
+ <script src="resource/js/tab-changes.js"></script>
+ <script src="resource/js/vocab-search.js"></script>
 
 <!-- Other (non-Vue) JS functionality -->
-<script src="resource/js/copy-to-clipboard.js"></script>
-<script src="resource/js/navbar.js"></script>
-<script src="resource/js/truncate-search-results.js"></script>
+ <script src="resource/js/copy-to-clipboard.js"></script>
+ <script src="resource/js/navbar.js"></script>
+ <script src="resource/js/truncate-search-results.js"></script>
