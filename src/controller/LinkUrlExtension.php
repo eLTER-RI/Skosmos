@@ -32,6 +32,19 @@ class LinkUrlExtension extends AbstractExtension
      */
     public function linkUrlFilter($uri, $vocab, $lang, $type = 'page', $clang = null, $term = null)
     {
+        // Define a list of external URI patterns to check
+        $externalPatterns = [
+            'https://orcid.org/',
+            'http://orcid.org/',
+        ];
+        
+        // Check if this is an external URI that should be linked directly
+        foreach ($externalPatterns as $pattern) {
+            if (strpos($uri, $pattern) === 0) {
+                return $uri; // Return the original URI unchanged for external links
+            }
+        }
+
         // $vocab can either be null, a vocabulary id (string) or a Vocabulary object
         if ($vocab === null) {
             return $uri;
