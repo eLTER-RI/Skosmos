@@ -36,6 +36,8 @@ class LinkUrlExtension extends AbstractExtension
         $externalPatterns = [
             'https://orcid.org/',
             'http://orcid.org/',
+            'https://purl.org/',
+            'http://purl.org/'
         ];
         
         // Check if this is an external URI that should be linked directly
