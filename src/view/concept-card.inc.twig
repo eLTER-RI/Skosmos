@@ -44,7 +44,7 @@
           {{ include('xl-label.inc.twig', {xlLabel: concept.xlLabel, xlDescriptionId: descriptionId}) }}
         {% endif %}
         {% if concept.notation %}
-          <h1 id="concept-preflabel" {% if descriptionId %} aria-describedby="{{ descriptionId }}" {% endif %} class="mb-0 tw-break-all">
+          <h1 id="concept-preflabel" {% if descriptionId %} aria-describedby="{{ descriptionId }}" {% endif %} class="mb-0 tw-break-words">
             <span class="notation user-select-all" id="concept-notation">{{ concept.notation }}</span>
             {{ concept.label }}</h1>
           <button class="px-1 btn btn-default copy-clipboard" type="button" id="copy-notation" data-bs-toggle="tooltip" data-bs-placement="button" title="{{ 'Copy to clipboard' | trans }}">
