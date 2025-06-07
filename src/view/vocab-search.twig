@@ -11,6 +11,9 @@
 
 {% block content %}
   <div class="container">
+    <a href="javascript:history.back()" class="tw-flex tw-gap-2 tw-w-max tw-pl-1 tw-pr-3 tw-py-2 tw-rounded-sm tw-bg-white tw-shadow-md hover:tw-bg-elter-blue-100">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left-icon lucide-chevron-left"><path d="m15 18-6-6 6-6"/></svg>Back</a>
+
     <div class="row">
       {% include "search-results-filter.inc.twig" %}
       <div class="col-md-7 ps-3" id="main-content">
