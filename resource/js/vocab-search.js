@@ -260,7 +260,7 @@ function startVocabSearchApp () {
                 class="dropdown-menu w-100"
                 :class="{ 'show': showDropdown }"
                 aria-labelledby="search-field">
-              <li class="autocomplete-result container" v-for="result in renderedResultsList"
+              <li class="autocomplete-result tw-px-4 tw-py-2 hover:tw-bg-elter-blue-100" v-for="result in renderedResultsList"
                 :key="result.prefLabel" >
                 <template v-if="result.pageUrl">
                   <a :href=result.pageUrl>
