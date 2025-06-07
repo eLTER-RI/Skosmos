@@ -7,7 +7,7 @@
   {# loop through the hits #}
 
   <div class="pt-1 search-result">
-    <div class="search-result-term">
+    <div class="search-result-term [&_a]:tw-text-elter-blue-400 [&_a]:tw-font-bold [&_a]:hover:tw-underline">
       {%- if vocab == '' and concept.vocab.id is defined %}
         <span class="fw-bold" data-title="{{ concept.vocabTitle }}">{{ concept.shortName }}:
         </span>
