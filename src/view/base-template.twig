@@ -33,27 +33,27 @@
     <link href="resource/fontawesome/css/regular.css" rel="stylesheet">
      <script src="https://cdn.tailwindcss.com"></script>
      <script>
-                                                  tailwind.config = {
-                                                    prefix: 'tw-',
-                                                    theme: {
-                                                      colors: {
-                                                        'base-100': '#fefefe',
-                                                        'base-200': '#F4F3F2',
-                                                        'black': '#000000',
-                                                        'white': '#ffffff',
-                                                        'elter-blue-100': '#badffd',
-                                                        'elter-blue-200': '#0877bd',
-                                                        'elter-blue-300': '#095a98',
-                                                        'elter-blue-400': '#003266',
-                                                        'elter-blue-500': '#0b2032',
-                                                        'elter-orange-100': '#f7c545',
-                                                        'elter-orange-200': '#f19934',
-                                                        'elter-background': '#03263d',
-                                                        'warning': '#ffbe00'
-                                                      }
-                                                    }
-                                                  }
-                                            </script>
+      tailwind.config = {
+        prefix: 'tw-',
+        theme: {
+          colors: {
+            'base-100': '#fefefe',
+            'base-200': '#F4F3F2',
+            'black': '#000000',
+            'white': '#ffffff',
+            'elter-blue-100': '#badffd',
+            'elter-blue-200': '#0877bd',
+            'elter-blue-300': '#095a98',
+            'elter-blue-400': '#003266',
+            'elter-blue-500': '#0b2032',
+            'elter-orange-100': '#f7c545',
+            'elter-orange-200': '#f19934',
+            'elter-background': '#03263d',
+            'warning': '#ffbe00'
+          }
+        }
+      }
+     </script>
       {% if GlobalConfig.customCss %}
     <link href="{{ GlobalConfig.customCss }}" media="screen, print" rel="stylesheet" type="text/css"> {% endif %}
     {% for plugin, files in request.plugins.pluginsCSS %}
@@ -61,8 +61,8 @@
       {% endfor %}
     {% endfor %}
   </head>
-<body class="{% if pageType =='landing' %} tw-bg-base-200 frontpage-logo{% else %}{% if pageType == 'concept' or pageType == 'vocab-home' %}bg-medium vocab-{{ request.vocabid }}{% else %}bg-light{% endif %}{% endif %} tw-min-h-screen tw-flex tw-flex-col"></body>
-    <header>
+<body class="{% if pageType =='landing' %} tw-bg-base-200 frontpage-logo{% else %}{% if pageType == 'concept' or pageType == 'vocab-home' %}bg-medium vocab-{{ request.vocabid }}{% else %}bg-light{% endif %}{% endif %} tw-min-h-screen tw-w-screen tw-max-w-screen tw-overflow-x-hidden tw-flex tw-flex-col">
+  <header>
       <a class="visually-hidden" id="skiptocontent" href="{{ request.langurl }}#maincontent">Skip to main</a>
       <div class="px-4 py-3 my-auto container-fluid bg-dark d-flex text-bg-dark">
         <a id="skosmos-logo-top" href="{{ request.lang }}/{% if request.contentLang and request.contentLang != request.lang %}?clang={{ request.contentLang }}{% endif %}{% if request.queryParam('anylang') == 'on' %}{% if request.contentLang == request.lang %}?{% else %}&{% endif %}anylang=on{% endif %}">
@@ -77,10 +77,7 @@
         </ul>
       </div>
       {% if pageType == 'landing' or pageType == 'vocab-home' or pageType == 'concept' %}
-        <div class="px-4 pt-4 container-fluid" id="headerbar">
-          {% if pageType == 'landing' %}
-            {% include "development-warning.inc.twig" %}
-          {% else %}
+      <div class="px-4 pt-4 container-fluid" id="headerbar">
             <div class="row">
               <div class="col-7">
                 {% if pageType == 'vocab-home' %}
@@ -96,16 +93,12 @@
               <div class="col-5">
                 <div id="search-vocab"></div>
               </div>
-            </div>
-          {% endif %}
+          </div>
         </div>
       {% endif %}
     </header>
-    <main id="main-container" class="{% if request.vocabid == '' or global_search %} frontpage{% elseif concept_uri != '' %} termpage{% elseif request.vocab != '' %} vocabpage{% if list_style %} {{ list_style }}{% endif %}{% endif %} py-5 tw-h-max">
-      {% if pageType != 'landing' %}
-        {% include "development-warning.inc.twig" %}
-      {% endif %}
-        <div class="container tw-pt-0 tw-flex tw-h-max">
+  <main id="main-container" class="{% if request.vocabid == '' or global_search %} frontpage{% elseif concept_uri != '' %} termpage{% elseif request.vocab != '' %} vocabpage{% if list_style %} {{ list_style }}{% endif %}{% endif %} py-5 tw-flex-1">
+        <div class="container tw-pt-0 tw-flex tw-h-max tw-min-h-[70vh]">
           <noscript>
             <strong>We're sorry but Skosmos doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
           </noscript>
