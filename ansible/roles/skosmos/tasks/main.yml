@@ -10,9 +10,14 @@
     state: present
   with_items:
     - apache2
-    - libapache2-mod-php7.0
-    - php-xml
-    - php-mbstring
+    - libapache2-mod-php8.3
+    - php8.3
+    - php8.3-curl
+    - php8.3-xsl
+    - php8.3-intl
+    - php8.3-mbstring
+    - php-apcu
+    - php-zip
     - git
 
 - name: Copy modified Apache configuration file
